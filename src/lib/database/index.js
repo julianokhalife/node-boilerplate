@@ -5,8 +5,10 @@ const config = require('../../configs/config');
 class MongoDB {
   static connectToTheDatabase() {
     try {
-      const database = MongoDB.dataConnection(config.mongo.user, config.mongo.password, config.mongo.host,
-        config.mongo.port, config.mongo.name);
+      const database = MongoDB.dataConnection(
+        config.mongo.user, config.mongo.password, config.mongo.host,
+        config.mongo.port, config.mongo.name,
+      );
       mongoose.connect(database, { useNewUrlParser: true });
 
       const { connection } = mongoose;
@@ -26,6 +28,7 @@ class MongoDB {
       return connection;
     } catch (e) {
       logger.error(e);
+      return false;
     }
   }
 

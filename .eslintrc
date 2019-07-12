@@ -3,5 +3,12 @@
     "node": true
   },
   "extends": "airbnb-base",
-  "plugins": ["promise"]
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 140
+      }
+    ]
+  }
 }
