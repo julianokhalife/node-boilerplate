@@ -14,9 +14,7 @@ const app = new App(
 
 app.listen();
 
-registerProcessEvents(logger, app, database);
-
-function registerProcessEvents(logger, app, db, health) {
+function registerProcessEvents(application, db) {
   process.on('uncaughtException', (error) => {
     logger.error('UncaughtException: ', error);
   });
@@ -31,3 +29,5 @@ function registerProcessEvents(logger, app, db, health) {
     process.exit(1);
   });
 }
+
+registerProcessEvents(app, database);

@@ -19,7 +19,7 @@ class MongoDB {
       });
       connection.on('disconnected', () => logger.info('Database Connection Disconnected'));
 
-      const relativePath = '../../';
+      // const relativePath = '../../';
       // initialize Models
       // require(`${relativePath}posts/post.model`);
 
