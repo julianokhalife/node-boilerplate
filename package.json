@@ -27,6 +27,7 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
+    "husky": "^3.0.0",
     "nodemon": "^1.19.1"
   },
   "scripts": {
@@ -36,5 +37,11 @@
     "lint": "eslint 'src/**/*.js' --fix"
   },
   "author": "Juliano Khalife",
-  "license": "ISC"
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
+  }
 }
