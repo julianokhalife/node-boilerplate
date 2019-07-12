@@ -34,7 +34,7 @@ class App {
     const rateLimitOptions = {
       windowMs: config.rate_limit.windowMs, // In milliseconds
       max: config.rate_limit.max, // limit each IP to X amount of requests per windowMs,
-      message: config.rate_limit.message,
+      message: config.rate_limit.message
     };
     const limiter = new ExpressRateLimit(rateLimitOptions);
     this.app.use(limiter);

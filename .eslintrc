@@ -9,6 +9,11 @@
       {
         "code": 140
       }
-    ]
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "no-underscore-dangle": "error"
   }
 }

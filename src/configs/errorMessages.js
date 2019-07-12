@@ -1,18 +1,18 @@
 module.exports = {
   serverError: {
     error: true,
-    message: 'Internal Server Error',
+    message: 'Internal Server Error'
   },
   unAuthorized: {
     error: true,
-    message: 'UnAuthorized',
+    message: 'UnAuthorized'
   },
   userNotFound: {
     error: true,
-    message: 'User otp not found',
+    message: 'User otp not found'
   },
   otpExpired: {
     error: true,
-    message: 'Otp is expired',
-  },
+    message: 'Otp is expired'
+  }
 };

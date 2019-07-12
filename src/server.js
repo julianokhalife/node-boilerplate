@@ -6,11 +6,9 @@ const database = require('./lib/database');
 const HealthMonitor = require('./lib/health');
 const HealthController = require('./health/health.controller');
 
-const app = new App(
-  [
-    new HealthController(new HealthMonitor()),
-  ],
-);
+const app = new App([
+  new HealthController(new HealthMonitor())
+],);
 
 app.listen();
 
