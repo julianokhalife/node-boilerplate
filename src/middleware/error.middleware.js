@@ -1,4 +1,4 @@
-function errorMiddleware(error, req, res, next) { // eslint-disable-line
+function errorMiddleware(error, req, res, next) { // eslint-disable-line no-unused-vars
   if (error && error.message === 'validation error') {
     res.status(400)
       .json(error.errors);
