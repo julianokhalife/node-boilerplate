@@ -1,15 +1,15 @@
 require('dotenv/config');
 require('./utils/validateEnv');
-const App = require('./app'),
-  logger = require('./lib/logger'),
-  database = require('./lib/database'),
-  HealthMonitor = require('./lib/health'),
-  HealthController = require('./health/health.controller');
+const App = require('./app');
+const logger = require('./lib/logger');
+const database = require('./lib/database');
+const HealthMonitor = require('./lib/health');
+const HealthController = require('./health/health.controller');
 
 const app = new App(
   [
     new HealthController(new HealthMonitor()),
-  ]
+  ],
 );
 
 app.listen();

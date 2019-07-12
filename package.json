@@ -24,13 +24,17 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "eslint": "^5.15.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-promise": "^4.2.1",
     "nodemon": "^1.19.1"
   },
   "scripts": {
     "clean": "rm -rf node_modules dist package-lock.json",
     "dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint 'src/**/*.js' --fix"
   },
   "author": "Juliano Khalife",
   "license": "ISC"

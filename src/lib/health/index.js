@@ -1,7 +1,6 @@
 const moment = require('moment');
 
 class HealthMonitor {
-
   constructor() {
     this.startTime = Date.now();
   }
@@ -9,8 +8,8 @@ class HealthMonitor {
   getStatus() {
     return {
       startTime: new Date(this.startTime).toISOString(),
-      upTime: moment(this.startTime).fromNow(true)
-    }
+      upTime: moment(this.startTime).fromNow(true),
+    };
   }
 }
 

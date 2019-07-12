@@ -1,8 +1,7 @@
-const express = require('express'),
-  HttpException = require('../exceptions/httpException');
+const express = require('express');
+const HttpException = require('../exceptions/httpException');
 
 class Controller {
-
   constructor(health) {
     this.path = '/health';
     this.router = express.Router();

@@ -1,5 +1,8 @@
-const {createLogger, format, transports} = require('winston');
-const {combine, timestamp, label, prettyPrint} = format;
+const { createLogger, format, transports } = require('winston');
+
+const {
+  combine, timestamp, label, prettyPrint,
+} = format;
 const config = require('../configs/config');
 
 
@@ -8,13 +11,12 @@ const createTransports = (applicationLogging) => {
 
   // setup the file transport
   if (applicationLogging.file) {
-
     // setup the log transport
     customTransports.push(
       new transports.File({
         filename: applicationLogging.file,
-        level: applicationLogging.level
-      })
+        level: applicationLogging.level,
+      }),
     );
   }
 
@@ -22,19 +24,21 @@ const createTransports = (applicationLogging) => {
   if (applicationLogging.console) {
     customTransports.push(
       new transports.Console({
-        level: applicationLogging.level
-      })
+        level: applicationLogging.level,
+      }),
     );
   }
 
   return customTransports;
 };
 
-module.exports = logger = createLogger({
+const logger = createLogger({
   format: combine(
-    label({label: config.app.name}),
+    label({ label: config.app.name }),
     timestamp(),
-    prettyPrint()
+    prettyPrint(),
   ),
-  transports: createTransports(config.application_logging)
+  transports: createTransports(config.application_logging),
 });
+
+module.exports = logger;

@@ -1,16 +1,16 @@
 require('dotenv/config');
 
-const express = require('express'),
-  compression = require('compression'),
-  bodyParser = require('body-parser'),
-  ExpressRateLimit = require('express-rate-limit'),
-  responseTime = require('response-time'),
-  helmet = require('helmet'),
-  uuid = require('uuid'),
-  logger = require('./lib/logger'),
-  database = require('./lib/database'),
-  config = require('./configs/config'),
-  errorMiddleware = require('./middleware/error.middleware');
+const express = require('express');
+const compression = require('compression');
+const bodyParser = require('body-parser');
+const ExpressRateLimit = require('express-rate-limit');
+const responseTime = require('response-time');
+const helmet = require('helmet');
+const uuid = require('uuid');
+const logger = require('./lib/logger');
+const database = require('./lib/database');
+const config = require('./configs/config');
+const errorMiddleware = require('./middleware/error.middleware');
 
 
 class App {
@@ -34,7 +34,7 @@ class App {
     const rateLimitOptions = {
       windowMs: config.rate_limit.windowMs, // In milliseconds
       max: config.rate_limit.max, // limit each IP to X amount of requests per windowMs,
-      message: config.rate_limit.message
+      message: config.rate_limit.message,
     };
     const limiter = new ExpressRateLimit(rateLimitOptions);
     this.app.use(limiter);
@@ -69,7 +69,7 @@ class App {
     logger.info(`${requestImprints}], ${request.method} ${request.path}`);
 
     response.on('finish', () => {
-      logger.info(`[${requestImprints}], ${response.statusCode} ${response.statusMessage}; ${response.get('Content-Length') || 0}b sent`)
+      logger.info(`[${requestImprints}], ${response.statusCode} ${response.statusMessage}; ${response.get('Content-Length') || 0}b sent`);
     });
     next();
   }
