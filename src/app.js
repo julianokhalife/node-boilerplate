@@ -69,8 +69,6 @@ class App {
     logger.info(`${requestImprints}], ${request.method} ${request.path}`);
 
     response.on('finish', () => {
-      const used = process.memoryUsage().heapUsed / 1024 / 1024;
-      console.log(`The script uses approximately ${used} MB`);
       logger.info(`[${requestImprints}], ${response.statusCode} ${response.statusMessage}; ${response.get('Content-Length') || 0}b sent`)
     });
     next();
