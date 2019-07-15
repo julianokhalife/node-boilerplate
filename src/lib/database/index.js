@@ -6,7 +6,7 @@ class MongoDB {
   static connectToTheDatabase() {
     try {
       const database = MongoDB.dataConnection(config.mongo.user, config.mongo.password, config.mongo.host,
-        config.mongo.port, config.mongo.name,);
+        config.mongo.port, config.mongo.name);
       mongoose.connect(database, { useNewUrlParser: true });
 
       const { connection } = mongoose;
@@ -19,9 +19,10 @@ class MongoDB {
       });
       connection.on('disconnected', () => logger.info('Database Connection Disconnected'));
 
-      // const relativePath = '../../';
       // initialize Models
-      // require(`${relativePath}posts/post.model`);
+      /* eslint-disable global-require */
+      require('../../posts/post.model');
+      /* eslint-enable global-require */
 
       return connection;
     } catch (e) {
