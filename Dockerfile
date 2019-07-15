@@ -5,6 +5,7 @@ COPY package*.json ./
 RUN npm install
 
 # initialise environment variables
+ENV APP_PREFIX ''
 ENV DB_USER ''
 ENV DB_PASSWORD ''
 ENV DB_HOST localhost

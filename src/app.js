@@ -12,7 +12,6 @@ const database = require('./lib/database');
 const config = require('./configs/config');
 const errorMiddleware = require('./middleware/error.middleware');
 
-
 class App {
   constructor(controllers) {
     this.app = express();
