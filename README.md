@@ -1,5 +1,8 @@
 # Node.js boilerplate
 
+This a simple boilerplate for executing CRUD actions on a post module.
+
+
 Getting Started
 ---------------
 #### Useful commands
@@ -42,3 +45,8 @@ List of Packages
 | response-time                   | Response time for Node.js servers                                       |
 | uuid                            | UUID generator                                                          |
 | winston                         | Logger package                                                          |
+
+APIs Reference
+--------------
+
+Check for the postman files under ```documentation/api```

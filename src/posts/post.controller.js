@@ -1,6 +1,6 @@
 const express = require('express');
 const validate = require('express-validation');
-const PostNotFoundException = require('./post.exception');
+const { PostNotFoundException } = require('./post.exception');
 const HttpException = require('../exceptions/httpException');
 const PostValidation = require('./post.validation');
 const Post = require('./post.model');
