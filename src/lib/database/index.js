@@ -7,7 +7,10 @@ class MongoDB {
     try {
       const database = MongoDB.dataConnection(config.mongo.user, config.mongo.password, config.mongo.host,
         config.mongo.port, config.mongo.name);
-      mongoose.connect(database, { useNewUrlParser: true });
+      mongoose.connect(database, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      });
 
       const { connection } = mongoose;
       connection.on('connected', () => {
