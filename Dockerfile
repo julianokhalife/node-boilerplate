@@ -21,7 +21,7 @@ COPY . .
 # specify the working directory
 WORKDIR src
 
-EXPOSE 5000
+EXPOSE 5000 5000
 
 # run application
 CMD ["node", "server.js"]
