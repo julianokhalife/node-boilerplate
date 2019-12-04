@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:10-alpine
 
 COPY package*.json ./
 
@@ -20,6 +20,8 @@ COPY . .
 
 # specify the working directory
 WORKDIR src
+
+EXPOSE 5000
 
 # run application
 CMD ["node", "server.js"]

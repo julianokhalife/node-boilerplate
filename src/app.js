@@ -63,7 +63,7 @@ class App {
 
     const imprintParts = [request.requestId];
     // TODO add user-agent or client info
-    const requestImprints = imprintParts.filter(x => !!x).join(', ');
+    const requestImprints = imprintParts.filter((x) => !!x).join(', ');
 
     logger.info(`${requestImprints}], ${request.method} ${request.path}`);
 

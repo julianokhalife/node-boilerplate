@@ -1,13 +1,24 @@
 const express = require('express');
 const validate = require('express-validation');
+const expressGraphQL = require('express-graphql');
+const { buildSchema } = require('graphql');
 const { PostNotFoundException } = require('./post.exception');
 const HttpException = require('../exceptions/httpException');
 const PostValidation = require('./post.validation');
 const Post = require('./post.model');
 
+const schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
+
+const root = { hello: () => 'Hello world!' };
+
 class Controller {
   constructor() {
     this.path = '/posts';
+    this.graphPath = '/posts-graphql';
     this.router = express.Router();
     this.initializeRoutes();
   }
@@ -18,6 +29,12 @@ class Controller {
     this.router.put(`${this.path}/:id`, validate(PostValidation.updatePost), Controller.modifyPost);
     this.router.delete(`${this.path}/:id`, validate(PostValidation.deletePostById), Controller.deletePost);
     this.router.post(this.path, validate(PostValidation.addPost), Controller.createPost);
+
+    this.router.use(this.graphPath, expressGraphQL({
+      schema,
+      rootValue: root,
+      graphiql: true
+    }));
   }
 
   static async getAllPosts(req, res, next) {
