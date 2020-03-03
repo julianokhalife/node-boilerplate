@@ -8,6 +8,8 @@ pipelines:
           script:
             # build the image
             - docker login -u $USER -p $ACCESS_TOKEN
-            - docker build -t $USER/$DOCKER_REPOSITORY:latest -t $USER/$DOCKER_REPOSITORY:$BITBUCKET_COMMIT_$BITBUCKET_BUILD_NUMBER .
-            - docker push $USER/$DOCKER_REPOSITORY:$BITBUCKET_COMMIT_$BITBUCKET_BUILD_NUMBER
+            - export BUILD_ID=${BITBUCKET_COMMIT}_${BITBUCKET_BUILD_NUMBER}
+            - docker build -t $USER/$DOCKER_REPOSITORY:latest -t $USER/$DOCKER_REPOSITORY:$BUILD_ID .
+            - docker push $USER/$DOCKER_REPOSITORY:$BUILD_ID
             - docker push $USER/$DOCKER_REPOSITORY:latest
+            - docker logout
