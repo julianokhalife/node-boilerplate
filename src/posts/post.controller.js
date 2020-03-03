@@ -2,12 +2,12 @@ const express = require('express');
 const validate = require('express-validation');
 const expressGraphQL = require('express-graphql');
 const { buildSchema } = require('graphql');
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 const { PostNotFoundException } = require('./post.exception');
 const HttpException = require('../exceptions/httpException');
 const PostValidation = require('./post.validation');
 const Post = require('./post.model');
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
 
 const jwtCheck = jwt({
   secret: jwks.expressJwtSecret({

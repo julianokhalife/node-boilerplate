@@ -1,10 +1,12 @@
-image: node:10.15.0
-pipelines:
-  default:
-    - step:
-        script:
-          - docker login -u julianokh -p 7bb8b0b5-524b-43fd-9bd9-b1566ecd8714
-          - docker build -t julianokh/node-boilerplate:latest .
-          - docker push julianokh/node-boilerplate:latest
 options:
   docker: true
+
+pipelines:
+  branches:
+    development:
+      - step:
+          script:
+            # build the image
+            - docker login -u $USER -p $ACCESS_TOKEN
+            - docker build -t $USER/$DOCKER_REPOSITORY:latest .
+            - docker push $USER/$DOCKER_REPOSITORY:latest
