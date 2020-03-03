@@ -9,5 +9,5 @@ pipelines:
             # build the image
             - docker login -u $USER -p $ACCESS_TOKEN
             - docker build -t $USER/$DOCKER_REPOSITORY:latest .
-            - docker push $USER/$DOCKER_REPOSITORY:${BITBUCKET_COMMIT}_${BITBUCKET_BUILD_NUMBER}
+            - docker push $USER/$DOCKER_REPOSITORY:$BITBUCKET_COMMIT_$BITBUCKET_BUILD_NUMBER
             - docker push $USER/$DOCKER_REPOSITORY:latest
