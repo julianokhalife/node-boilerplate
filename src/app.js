@@ -1,17 +1,16 @@
 require('dotenv/config');
 
-const express = require('express'),
-  compression = require('compression'),
-  bodyParser = require('body-parser'),
-  ExpressRateLimit = require('express-rate-limit'),
-  responseTime = require('response-time'),
-  helmet = require('helmet'),
-  uuid = require('uuid'),
-  logger = require('./lib/logger'),
-  database = require('./lib/database'),
-  config = require('./configs/config'),
-  errorMiddleware = require('./middleware/error.middleware');
-
+const express = require('express');
+const compression = require('compression');
+const bodyParser = require('body-parser');
+const ExpressRateLimit = require('express-rate-limit');
+const responseTime = require('response-time');
+const helmet = require('helmet');
+const uuid = require('uuid');
+const logger = require('./lib/logger');
+const database = require('./lib/database');
+const config = require('./configs/config');
+const errorMiddleware = require('./middleware/error.middleware');
 
 class App {
   constructor(controllers) {
@@ -64,14 +63,12 @@ class App {
 
     const imprintParts = [request.requestId];
     // TODO add user-agent or client info
-    const requestImprints = imprintParts.filter(x => !!x).join(', ');
+    const requestImprints = imprintParts.filter((x) => !!x).join(', ');
 
     logger.info(`${requestImprints}], ${request.method} ${request.path}`);
 
     response.on('finish', () => {
-      const used = process.memoryUsage().heapUsed / 1024 / 1024;
-      console.log(`The script uses approximately ${used} MB`);
-      logger.info(`[${requestImprints}], ${response.statusCode} ${response.statusMessage}; ${response.get('Content-Length') || 0}b sent`)
+      logger.info(`[${requestImprints}], ${response.statusCode} ${response.statusMessage}; ${response.get('Content-Length') || 0}b sent`);
     });
     next();
   }

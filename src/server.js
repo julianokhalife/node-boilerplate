@@ -1,22 +1,20 @@
 require('dotenv/config');
 require('./utils/validateEnv');
-const App = require('./app'),
-  logger = require('./lib/logger'),
-  database = require('./lib/database'),
-  HealthMonitor = require('./lib/health'),
-  HealthController = require('./health/health.controller');
+const App = require('./app');
+const logger = require('./lib/logger');
+const database = require('./lib/database');
+const HealthMonitor = require('./lib/health');
+const HealthController = require('./health/health.controller');
+const PostController = require('./posts/post.controller');
 
-const app = new App(
-  [
-    new HealthController(new HealthMonitor()),
-  ]
-);
+const app = new App([
+  new HealthController(new HealthMonitor()),
+  new PostController()
+],);
 
 app.listen();
 
-registerProcessEvents(logger, app, database);
-
-function registerProcessEvents(logger, app, db, health) {
+function registerProcessEvents(application, db) {
   process.on('uncaughtException', (error) => {
     logger.error('UncaughtException: ', error);
   });
@@ -31,3 +29,5 @@ function registerProcessEvents(logger, app, db, health) {
     process.exit(1);
   });
 }
+
+registerProcessEvents(app, database);
