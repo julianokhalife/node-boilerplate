@@ -2,9 +2,10 @@ FROM node:10-alpine
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install --production
 
 # initialise environment variables
+ENV NODE_ENV production
 ENV APP_PREFIX ''
 ENV DB_USER ''
 ENV DB_PASSWORD ''
