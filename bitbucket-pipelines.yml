@@ -3,7 +3,7 @@ options:
 
 pipelines:
   branches:
-    development:
+    master:
       - step:
           script:
             # build the image
