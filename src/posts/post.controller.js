@@ -6,6 +6,20 @@ const { PostNotFoundException } = require('./post.exception');
 const HttpException = require('../exceptions/httpException');
 const PostValidation = require('./post.validation');
 const Post = require('./post.model');
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
+
+const jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: 'https://dev-1lg49ixw.auth0.com/.well-known/jwks.json'
+  }),
+  audience: 'http://localhost:4000',
+  issuer: 'https://dev-1lg49ixw.auth0.com/',
+  algorithms: ['RS256']
+});
 
 const schema = buildSchema(`
   type Query {
@@ -18,12 +32,15 @@ const root = { hello: () => 'Hello world!' };
 class Controller {
   constructor() {
     this.path = '/posts';
+    this.authenticatedPath = '/myPosts';
     this.graphPath = '/posts-graphql';
     this.router = express.Router();
     this.initializeRoutes();
   }
 
   initializeRoutes() {
+    this.router.use(this.authenticatedPath, jwtCheck);
+    this.router.get(this.authenticatedPath, Controller.getAllPosts);
     this.router.get(this.path, Controller.getAllPosts);
     this.router.get(`${this.path}/:id`, validate(PostValidation.getPostById), Controller.getPostById);
     this.router.put(`${this.path}/:id`, validate(PostValidation.updatePost), Controller.modifyPost);
