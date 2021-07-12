@@ -4,10 +4,12 @@ const App = require('./app');
 const logger = require('./lib/logger');
 const database = require('./lib/database');
 const HealthMonitor = require('./lib/health');
+const SwaggerController = require('./swagger/swagger.controller');
 const HealthController = require('./health/health.controller');
 const PostController = require('./posts/post.controller');
 
 const app = new App([
+  new SwaggerController(),
   new HealthController(new HealthMonitor()),
   new PostController()
 ],);
